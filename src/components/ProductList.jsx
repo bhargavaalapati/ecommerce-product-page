@@ -36,8 +36,11 @@ const ProductList = () => {
     return (
         <div className="product-list-container">
             <h2>Products ({products.length})</h2>
-            {/* Temporary display of data to confirm it works */}
-            <pre>{JSON.stringify(products, null, 2)}</pre>
+            <div className="product-grid">
+                {products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                ))}
+            </div>
         </div>
     );
 };
