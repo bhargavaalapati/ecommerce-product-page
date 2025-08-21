@@ -1,8 +1,5 @@
-// src/components/ProductCard.jsx
-
 import React from 'react';
-
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAddToCart }) => {
     return (
         <div className="product-card">
             <img
@@ -14,6 +11,9 @@ const ProductCard = ({ product }) => {
                 <h3 className="product-title">{product.title}</h3>
                 <p className="product-price">${product.price.toFixed(2)}</p>
                 <p className="product-category">{product.category}</p>
+                <button className="add-to-cart-btn" onClick={() => onAddToCart(product)}>
+                    Add to Cart
+                </button>
             </div>
         </div>
     );
