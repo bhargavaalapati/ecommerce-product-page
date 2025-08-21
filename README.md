@@ -6,6 +6,10 @@ This project is a dynamic, single-page e-commerce application built to demonstra
 
 The application serves as a comprehensive showcase of core React concepts, API integration, and user-centric design principles.
 
+## Live Demo
+
+[Live Demo](https://ecommerce-product-page-urvp.vercel.app/)
+
 ## Features
 
 - **Dynamic Product Display:** Fetches and displays a wide range of products from a live REST API.
