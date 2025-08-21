@@ -47,18 +47,22 @@ function App() {
   });
 
   const handleAddToCart = (product) => {
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id);
-      if (existingItem) {
-        toast.info(`Updated quantity for ${product.title}`);
-        return prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        toast.success(`${product.title} added to cart!`);
-        return [...prevItems, { ...product, quantity: 1 }];
-      }
-    });
+    // Check if the item is already in the cart
+    const existingItem = cartItems.find(item => item.id === product.id);
+
+    if (existingItem) {
+      // If it exists, update the quantity
+      setCartItems(prevItems => prevItems.map(item =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      ));
+      // Now, trigger the toast after the state update is scheduled
+      toast.info(`Updated quantity for ${product.title}`);
+    } else {
+      // If it doesn't exist, add it to the cart
+      setCartItems(prevItems => [...prevItems, { ...product, quantity: 1 }]);
+      // Trigger the toast for a new item
+      toast.success(`${product.title} added to cart!`);
+    }
   };
 
   const toggleCartVisibility = () => {
