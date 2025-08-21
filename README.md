@@ -36,13 +36,12 @@ Follow these steps to get a local copy of the project up and running on your mac
 
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    git clone [https://github.com/bhargavaalapati/ecommerce-product-page.git](https://github.com/bhargavaalapati/ecommerce-product-page.git)
     ```
-    (Note: Replace `your-username/your-repo-name` with your actual GitHub repository link.)
 
 2.  Navigate to the project directory:
     ```bash
-    cd your-repo-name
+    cd ecommerce-product-page
     ```
 
 3.  Install the required npm packages:
