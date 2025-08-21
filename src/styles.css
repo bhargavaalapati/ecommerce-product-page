@@ -126,16 +126,20 @@
 .cart-icon-container {
     position: relative;
     cursor: pointer;
+    display: flex;
+    /* Makes it a flex container */
+    align-items: center;
+    /* Aligns items vertically */
+    gap: 5px;
+    /* Adds space between icon and count */
 }
 
 .cart-count {
-    position: absolute;
-    top: -10px;
-    right: -10px;
     background-color: #ff5722;
     color: white;
     border-radius: 50%;
-    padding: 2px 6px;
+    padding: 2px 8px;
+    /* Adjusted padding for better look */
     font-size: 0.8em;
     font-weight: bold;
 }
@@ -143,6 +147,7 @@
 .cart-icon {
     font-size: 1.8rem;
 }
+
 
 /* Add to Cart Button */
 .add-to-cart-btn {

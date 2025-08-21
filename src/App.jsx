@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import ProductList from './components/ProductList';
 import SearchBar from './components/SearchBar';
 import ShoppingCart from './components/ShoppingCart';
-import { MdShoppingBag } from 'react-icons/md';
+import { FaShoppingCart } from 'react-icons/fa';
 import './App.css';
 import './styles.css';
 
@@ -47,10 +50,12 @@ function App() {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
       if (existingItem) {
+        toast.info(`Updated quantity for ${product.title}`);
         return prevItems.map(item =>
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
+        toast.success(`${product.title} added to cart!`);
         return [...prevItems, { ...product, quantity: 1 }];
       }
     });
@@ -62,28 +67,31 @@ function App() {
 
   return (
     <div className="app-container">
+      <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <header className="app-header">
-        <h1 className="header-title">E-commerce Store <MdShoppingBag /></h1>
+        <h1 className="header-title">E-commerce Store</h1>
         <div className="cart-icon-container" onClick={toggleCartVisibility}>
+          <FaShoppingCart className="cart-icon" />
           <span className="cart-count">{cartItems.length}</span>
-          <MdShoppingBag className="cart-icon" />
         </div>
       </header>
       <main>
-        <div className="filters-container">
-          <SearchBar onSearchChange={setSearchQuery} />
-          <div className="category-buttons">
-            {categories.map(category => (
-              <button
-                key={category}
-                className={`category-button ${selectedCategory === category ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
+        {!isCartVisible && (
+          <div className="filters-container">
+            <SearchBar onSearchChange={setSearchQuery} />
+            <div className="category-buttons">
+              {categories.map(category => (
+                <button
+                  key={category}
+                  className={`category-button ${selectedCategory === category ? 'active' : ''}`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         {isCartVisible ? (
           <ShoppingCart cartItems={cartItems} setCartItems={setCartItems} />
         ) : (
